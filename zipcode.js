@@ -2,7 +2,7 @@ import {setTimeout} from "timers/promises"
 import {fetchByAddress} from "./zipcoda_api.js";
 
 export const resolveZipcode = async (address) => {
-    // API 呼び出し制限考慮
+    // For API call restriction
     await setTimeout(3000)
 
     try {
