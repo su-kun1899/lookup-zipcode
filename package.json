@@ -2,14 +2,13 @@
   "name": "lookup-zipcode",
   "version": "1.0.0",
   "type": "module",
-  "description": "",
+  "description": "An application for implementing reverse lookup of zipcodes.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["zipcode", "lookup", "reverse lookup", "postal code"],
   "license": "MIT",
   "dependencies": {
     "csv-parse": "^5.5.3",
