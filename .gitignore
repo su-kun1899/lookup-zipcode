@@ -2,7 +2,7 @@
 node_modules/
 
 # caches
-*.cache
+zipcode_cache.json
 
 # csv files
 *.csv

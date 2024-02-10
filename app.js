@@ -1,7 +1,7 @@
 import fs from "fs";
 import {parse} from "csv-parse/sync";
 import {stringify} from "csv-stringify/sync";
-import {resolveZipcode} from "./zipcode.js";
+import {resolveZipcode, storeCache} from "./zipcode.js";
 
 console.log(`Processing started at ${new Date().toISOString()}`)
 
@@ -29,5 +29,8 @@ const output = stringify(outputRecords, {
     header: true,
 })
 fs.writeFileSync('output.csv', output)
+
+// Save the cache
+storeCache()
 
 console.log(`Processing ended at ${new Date().toISOString()}`)
