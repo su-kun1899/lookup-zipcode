@@ -5,6 +5,11 @@ import fs from "fs";
 const cachedZipcode = new Map();
 
 export const resolveZipcode = async (address) => {
+    // Check if the cache has the address
+    if (cachedZipcode.has(address)) {
+        return cachedZipcode.get(address);
+    }
+
     // For API call restriction
     await setTimeout(3000)
 
@@ -26,11 +31,25 @@ export const resolveZipcode = async (address) => {
     }
 }
 
+const cacheFileName = 'zipcode_cache.json'
+
 export const storeCache = () => {
     // save cache to a file in JSON format
-    const cacheFileName = 'zipcode_cache.json';
-    const obj = Object.fromEntries(cachedZipcode);
-    const json = JSON.stringify(obj, null, 2);
+    const obj = Object.fromEntries(cachedZipcode)
+    const json = JSON.stringify(obj, null, 2)
 
-    fs.writeFileSync(cacheFileName, json);
+    fs.writeFileSync(cacheFileName, json)
+}
+
+export const restoreCache = () => {
+    if (fs.existsSync(cacheFileName) === false) {
+        return
+    }
+
+    const data = fs.readFileSync(cacheFileName, 'utf8')
+    const obj = JSON.parse(data)
+
+    for (const [key, value] of Object.entries(obj)) {
+        cachedZipcode.set(key, value)
+    }
 }

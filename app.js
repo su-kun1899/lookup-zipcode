@@ -1,7 +1,7 @@
 import fs from "fs";
 import {parse} from "csv-parse/sync";
 import {stringify} from "csv-stringify/sync";
-import {resolveZipcode, storeCache} from "./zipcode.js";
+import {resolveZipcode, restoreCache, storeCache} from "./zipcode.js";
 
 console.log(`Processing started at ${new Date().toISOString()}`)
 
@@ -11,6 +11,9 @@ const inputRecords = parse(inputFile, {
     columns: true,
     skip_empty_lines: true,
 });
+
+// Restore the cache
+restoreCache()
 
 // Resolve the zipcode for each address
 const outputRecords = [];
